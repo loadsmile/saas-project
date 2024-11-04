@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
-  FastForward,
+  Rocket,
   Maximize2,
   Info,
   Settings,
@@ -12,7 +12,7 @@ import {
 const Features = () => {
   const features = [
     {
-      icon: <FastForward size={24} />,
+      icon: <Rocket size={24} />,
       title: "Launch Quickly",
       description: "Launch your MVP in minutes."
     },
