@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
   FastForward,
-  ArrowsOut,
+  Maximize2,
   Info,
   Settings,
   LayoutDashboard,
@@ -17,7 +17,7 @@ const Features = () => {
       description: "Launch your MVP in minutes."
     },
     {
-      icon: <ArrowsOut size={24} />,
+      icon: <Maximize2 size={24} />,
       title: "Scalable Platform",
       description: "Grow your platform with your business."
     },
