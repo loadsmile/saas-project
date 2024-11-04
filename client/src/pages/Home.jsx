@@ -5,17 +5,17 @@ const Home = () => {
     {
       title: "Launch quickly",
       description: "Use our templates and integrations to build your MVP in minutes.",
-      image: "https://cdn.usegalileo.ai/stability/185f2fc7-18f9-418b-b490-9782186beb52.png"
+      image: "/images/launch.png"
     },
     {
       title: "Scalable platform",
       description: "Our platform grows with you, from your first user to your millionth.",
-      image: "https://cdn.usegalileo.ai/sdxl10/ab6ce035-faa0-418a-93a5-fccaa6fa4434.png"
+      image: "/images/scalable.png"
     },
     {
       title: "Mobile first",
       description: "Our mobile SDKs make it easy to go from web to mobile.",
-      image: "https://cdn.usegalileo.ai/stability/652da435-0ee4-4108-8e41-0f3f38260e7f.png"
+      image: "/images/mobile.png"
     }
   ];
 
@@ -23,33 +23,32 @@ const Home = () => {
     {
       name: "Vicky, Founder at SaaS Co",
       text: "Acme SaaS has been a game changer for us. Their platform is easy to use and we've been able to launch new features faster than ever before.",
-      image: "https://cdn.usegalileo.ai/stability/e237c075-618e-47e9-804e-9f27b4aa60a0.png"
+      image: "/images/vicky.png"
     },
     {
       name: "John, CTO at Tech Inc",
       text: "We've been using Acme SaaS for a few months now and have been really impressed with the performance and reliability of their platform.",
-      image: "https://cdn.usegalileo.ai/stability/13795b1d-5f77-4766-9387-5b7a79c2ec27.png"
+      image: "/images/john.png"
     },
     {
       name: "Sara, Head of Product at Startup",
       text: "The support team at Acme SaaS has been fantastic. They're always quick to respond and have helped us with everything from troubleshooting to best practices.",
-      image: "https://cdn.usegalileo.ai/stability/bdc83fc7-ccf6-47b9-b379-9ec7b08148da.png"
+      image: "/images/sara.png"
     },
     {
       name: "Mike, CEO at Software Co",
       text: "Acme SaaS has saved us a lot of time and resources. Their platform is very intuitive and has allowed us to focus on building great products.",
-      image: "https://cdn.usegalileo.ai/stability/2e167adf-e133-4e93-a057-9760ba2e5e40.png"
+      image: "/images/mike.png"
     }
   ];
 
   return (
     <div className="w-full bg-white">
-      {/* Hero Section */}
       <div className="max-w-[1200px] mx-auto px-4">
         <section className="py-16 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <img
-              src="https://cdn.usegalileo.ai/stability/7386650c-b020-4c1f-80ba-c71a7548f0fa.png"
+              src="/images/build.png"
               alt="Hero Illustration"
               className="w-full rounded-xl"
             />
