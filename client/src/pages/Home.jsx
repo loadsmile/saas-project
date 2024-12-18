@@ -22,22 +22,22 @@ const Home = () => {
   const testimonials = [
     {
       name: "Vicky, Founder at SaaS Co",
-      text: "Acme SaaS has been a game changer for us. Their platform is easy to use and we've been able to launch new features faster than ever before.",
+      text: "TechTonic SaaS has been a game changer for us. Their platform is easy to use and we've been able to launch new features faster than ever before.",
       image: "/images/vicky.png"
     },
     {
       name: "John, CTO at Tech Inc",
-      text: "We've been using Acme SaaS for a few months now and have been really impressed with the performance and reliability of their platform.",
+      text: "We've been using TechTonic SaaS for a few months now and have been really impressed with the performance and reliability of their platform.",
       image: "/images/john.png"
     },
     {
       name: "Sara, Head of Product at Startup",
-      text: "The support team at Acme SaaS has been fantastic. They're always quick to respond and have helped us with everything from troubleshooting to best practices.",
+      text: "The support team at TechTonic SaaS has been fantastic. They're always quick to respond and have helped us with everything from troubleshooting to best practices.",
       image: "/images/sara.png"
     },
     {
       name: "Mike, CEO at Software Co",
-      text: "Acme SaaS has saved us a lot of time and resources. Their platform is very intuitive and has allowed us to focus on building great products.",
+      text: "TechTonic SaaS has saved us a lot of time and resources. Their platform is very intuitive and has allowed us to focus on building great products.",
       image: "/images/mike.png"
     }
   ];
@@ -59,7 +59,7 @@ const Home = () => {
                 Build and scale your SaaS product
               </h1>
               <p className="text-[#1C160C] text-sm md:text-base font-normal leading-normal">
-                Acme SaaS is the platform for building, managing and scaling your SaaS product. It&apos;s the fastest way to launch and scale your SaaS business.
+                TechTonic SaaS is the platform for building, managing and scaling your SaaS product. It&apos;s the fastest way to launch and scale your SaaS business.
               </p>
             </div>
             <Link
@@ -76,7 +76,7 @@ const Home = () => {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-4">
               <h2 className="text-[#1C160C] text-[32px] font-bold leading-tight">
-                Why choose Acme SaaS?
+                Why choose TechTonic SaaS?
               </h2>
               <p className="text-[#1C160C] text-base">
                 We&apos;re here to help you succeed. Get started with free credits and take advantage of our flexible pricing model.
@@ -86,7 +86,7 @@ const Home = () => {
               to="/register"
               className="bg-[#019863] text-white px-6 py-3 rounded-full text-base font-bold w-fit hover:bg-[#018756]"
             >
-              Try Acme SaaS for free
+              Try TechTonic SaaS for free
             </Link>
           </div>
 

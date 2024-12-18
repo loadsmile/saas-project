@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <p className="text-[#A18249] text-base font-normal leading-normal text-center mt-6">
-          © {new Date().getFullYear()} Acme SaaS. All rights reserved.
+          © {new Date().getFullYear()} TechTonic SaaS. All rights reserved.
         </p>
       </div>
     </footer>

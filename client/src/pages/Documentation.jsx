@@ -124,7 +124,7 @@ const Documentation = () => {
           Documentation
         </h1>
         <p className="text-[#1C160C] text-base leading-normal max-w-[720px]">
-          Explore our comprehensive guides and API documentation to get the most out of Acme SaaS.
+          Explore our comprehensive guides and API documentation to get the most out of TechTonic SaaS.
           Learn how to set up your environment, integrate our platform into your workflow, and leverage advanced features to enhance your SaaS product.
         </p>
       </div>

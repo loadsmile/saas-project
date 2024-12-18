@@ -47,7 +47,7 @@ const Features = () => {
     <div className="flex flex-col gap-10 px-4 py-10 @container">
       <div className="flex flex-col gap-4">
         <h1 className="text-[#1C160C] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
-          Why choose Acme SaaS?
+          Why choose TechTonic SaaS?
         </h1>
         <p className="text-[#1C160C] text-base font-normal leading-normal max-w-[720px]">
           We&apos;re here to help you succeed. Get started with free credits and take advantage of our flexible pricing model.
@@ -56,7 +56,7 @@ const Features = () => {
           to="/register"
           className="bg-[#019863] text-white px-6 py-3 rounded-full text-base font-bold w-fit hover:bg-[#018756] transition-colors"
         >
-          Try Acme SaaS for free
+          Try TechTonic SaaS for free
         </Link>
       </div>
 
