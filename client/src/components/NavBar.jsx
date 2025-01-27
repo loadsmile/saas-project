@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useAuth } from '../context/useAuth';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const navLinks = [
     { title: "Home", route: "/" },
@@ -11,6 +13,14 @@ const Navbar = () => {
     { title: "Pricing", route: "/pricing" },
     { title: "Documentation", route: "/documentation" }
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <nav className="border-b border-[#F4EFE6]">
@@ -32,18 +42,38 @@ const Navbar = () => {
               {link.title}
             </Link>
           ))}
-          <Link
-            to="/login"
-            className="text-sm font-medium text-[#1C160C] hover:text-[#A18249]"
-          >
-            Sign in
-          </Link>
-          <Link
-            to="/register"
-            className="bg-[#019863] text-white px-4 py-2 rounded-full text-sm font-bold tracking-[0.015em] hover:bg-opacity-90"
-          >
-            Get started
-          </Link>
+
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium text-[#1C160C] hover:text-[#A18249]"
+              >
+                Admin Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-sm font-medium text-[#1C160C] hover:text-[#A18249]"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm font-medium text-[#1C160C] hover:text-[#A18249]"
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/register"
+                className="bg-[#019863] text-white px-4 py-2 rounded-full text-sm font-bold tracking-[0.015em] hover:bg-opacity-90"
+              >
+                Get started
+              </Link>
+            </>
+          )}
         </div>
 
         <button
@@ -66,20 +96,44 @@ const Navbar = () => {
               {link.title}
             </Link>
           ))}
-          <Link
-            to="/login"
-            className="block px-4 py-2 text-sm font-medium text-[#1C160C] hover:bg-[#F4EFE6]"
-            onClick={() => setIsOpen(false)}
-          >
-            Sign in
-          </Link>
-          <Link
-            to="/register"
-            className="block px-4 py-2 text-sm font-medium text-[#019863] hover:bg-[#F4EFE6]"
-            onClick={() => setIsOpen(false)}
-          >
-            Get started
-          </Link>
+
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="block px-4 py-2 text-sm font-medium text-[#1C160C] hover:bg-[#F4EFE6]"
+                onClick={() => setIsOpen(false)}
+              >
+                Admin Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2 text-sm font-medium text-[#1C160C] hover:bg-[#F4EFE6]"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="block px-4 py-2 text-sm font-medium text-[#1C160C] hover:bg-[#F4EFE6]"
+                onClick={() => setIsOpen(false)}
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/register"
+                className="block px-4 py-2 text-sm font-medium text-[#019863] hover:bg-[#F4EFE6]"
+                onClick={() => setIsOpen(false)}
+              >
+                Get started
+              </Link>
+            </>
+          )}
         </div>
       )}
     </nav>
