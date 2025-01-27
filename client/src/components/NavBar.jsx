@@ -26,7 +26,6 @@ const Navbar = () => {
     <nav className="border-b border-[#F4EFE6]">
       <div className="max-w-[1200px] mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <span className="text-[#1C160C]">▼</span>
           <Link to="/" className="text-lg font-bold tracking-[-0.015em] text-[#1C160C]">
             Tech
           </Link>

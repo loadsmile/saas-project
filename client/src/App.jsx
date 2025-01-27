@@ -13,6 +13,7 @@ import Documentation from './pages/Documentation';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -94,9 +95,7 @@ function App() {
               } />
               <Route path="/settings" element={
                 <ProtectedRoute>
-                  <div className="layout-content-container flex flex-col max-w-[960px] mx-auto px-4">
-                    <div>Settings Content</div>
-                  </div>
+                  <Settings />
                 </ProtectedRoute>
               } />
             </Routes>

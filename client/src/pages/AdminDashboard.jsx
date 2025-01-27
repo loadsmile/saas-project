@@ -1,160 +1,187 @@
 import { useState } from 'react';
 import { useAuth } from '../context/useAuth';
+import { Link } from 'react-router-dom';
 import {
-  Users,
-  FileText,
-  User,
-  BarChart2
+  Search,
+  Building2,
+  Code2,
+  HelpCircle,
+  Settings,
+  LogOut,
+  Play,
+  Plus
 } from 'lucide-react';
 
 const AdminDashboard = () => {
   const { user } = useAuth();
-  const [selectedPeriod, setSelectedPeriod] = useState('monthly');
+  const [activeTab, setActiveTab] = useState('organizations');
+  const [showNewOrgModal, setShowNewOrgModal] = useState(false);
+  const [newOrgName, setNewOrgName] = useState('');
+  const [organizations, setOrganizations] = useState([
+    { id: 1, name: 'My First Organization' }
+  ]);
 
-  const metrics = {
-    activeUsers: {
-      count: 1245,
-      trend: '+5%',
-      isPositive: true
-    },
-    monthlyRevenue: {
-      count: '$35,000',
-      trend: '+8%',
-      isPositive: true
-    },
-    supportTickets: {
-      count: 78,
-      trend: '-2%',
-      isPositive: false
+  const sidebarLinks = [
+    { icon: <Building2 size={24} />, label: 'Organizations', id: 'organizations', path: '/organizations' },
+    { icon: <Code2 size={24} />, label: 'Projects', id: 'projects', path: '/projects' },
+    { icon: <Settings size={24} />, label: 'Settings', id: 'settings', path: '/settings' },
+    { icon: <HelpCircle size={24} />, label: 'Support', id: 'support', path: '/support' }
+  ];
+
+  const handleCreateOrg = () => {
+    if (newOrgName.trim()) {
+      setOrganizations([
+        ...organizations,
+        { id: organizations.length + 1, name: newOrgName }
+      ]);
+      setNewOrgName('');
+      setShowNewOrgModal(false);
     }
   };
 
-  const recentActivities = [
-    {
-      type: 'user',
-      title: 'New User Registered',
-      description: 'John Doe - 2 hours ago',
-      time: '2h',
-      icon: <User size={24} />
-    },
-    {
-      type: 'revenue',
-      title: 'Revenue Report Generated',
-      description: 'Monthly report for September',
-      time: '4h',
-      icon: <FileText size={24} />
-    }
-  ];
-
-  const quickActions = [
-    {
-      title: 'Add New User',
-      icon: <Users size={24} />,
-      action: () => console.log('Add user')
-    },
-    {
-      title: 'Generate Report',
-      icon: <FileText size={24} />,
-      action: () => console.log('Generate report')
-    },
-    {
-      title: 'View Analytics',
-      icon: <BarChart2 size={24} />,
-      action: () => console.log('View analytics')
-    }
-  ];
-
   return (
-    <div className="max-w-[960px] mx-auto w-full">
-      <div className="flex flex-col gap-8 p-6">
-        {/* Welcome Section */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-[#1C160C]">
-              Welcome back, {user?.email}
-            </h1>
-            <p className="text-[#A18249]">Here&apos;s what&apos;s happening with your SaaS platform.</p>
-          </div>
-          <div className="flex gap-2">
-            <select
-              value={selectedPeriod}
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="rounded-lg border border-[#E9DFCE] px-4 py-2"
-            >
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Metrics Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {Object.entries(metrics).map(([key, data]) => (
-            <div key={key} className="flex flex-col gap-2 rounded-xl p-6 bg-[#F4EFE6]">
-              <h3 className="text-[#1C160C] text-base font-medium">
-                {key.replace(/([A-Z])/g, ' $1').trim()}
-              </h3>
-              <p className="text-[#1C160C] text-2xl font-bold">{data.count}</p>
-              <p className={`text-base font-medium ${
-                data.isPositive ? 'text-[#019863]' : 'text-[#C12929]'
-              }`}>
-                {data.trend}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Quick Actions */}
-        <div>
-          <h2 className="text-[#1C160C] text-xl font-bold mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {quickActions.map((action, index) => (
-              <button
-                key={index}
-                onClick={action.action}
-                className="flex items-center gap-3 rounded-lg border border-[#E9DFCE] bg-white p-4 hover:border-[#019863] transition-colors"
-              >
-                <span className="text-[#1C160C]">{action.icon}</span>
-                <span className="text-[#1C160C] font-bold">{action.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Recent Activities */}
-        <div>
-          <h2 className="text-[#1C160C] text-xl font-bold mb-4">Recent Activities</h2>
-          <div className="flex flex-col gap-2">
-            {recentActivities.map((activity, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between bg-white px-4 py-3 rounded-lg border border-[#E9DFCE]"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center rounded-lg bg-[#F4EFE6] p-3">
-                    {activity.icon}
-                  </div>
-                  <div>
-                    <p className="text-[#1C160C] font-medium">{activity.title}</p>
-                    <p className="text-[#A18249] text-sm">{activity.description}</p>
-                  </div>
-                </div>
-                <span className="text-[#A18249] text-sm">{activity.time}</span>
+    <div className="flex min-h-screen bg-white">
+      {/* Sidebar */}
+      <div className="w-80 border-r border-[#F4EFE6] p-4">
+        <div className="flex flex-col h-full justify-between">
+          {/* User Info */}
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#F4EFE6]" />
+              <div>
+                <h3 className="text-[#1C160C] text-base font-medium">{user?.email}</h3>
+                <p className="text-[#A18249] text-sm">Admin</p>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        {/* Support Section */}
-        <div className="mt-8 text-center">
-          <h2 className="text-[#1C160C] text-xl font-bold mb-2">Need Help?</h2>
-          <p className="text-[#A18249] mb-4">Contact our support team for assistance</p>
-          <button className="bg-[#019863] text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-colors">
-            Contact Support
-          </button>
+            {/* Navigation Links */}
+            <div className="flex flex-col gap-2">
+              {sidebarLinks.map((link) => (
+                <Link
+                  key={link.id}
+                  to={link.path}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-full ${
+                    activeTab === link.id ? 'bg-[#F4EFE6]' : ''
+                  }`}
+                  onClick={() => setActiveTab(link.id)}
+                >
+                  <span className="text-[#1C160C]">{link.icon}</span>
+                  <span className="text-[#1C160C] text-sm font-medium">{link.label}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="flex flex-col gap-4">
+            <button className="w-full bg-[#019863] text-white px-4 py-2 rounded-full text-sm font-bold">
+              Upgrade Plan
+            </button>
+            <button className="flex items-center gap-3 px-3 py-2">
+              <LogOut size={24} className="text-[#1C160C]" />
+              <span className="text-[#1C160C] text-sm font-medium">Logout</span>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Main Content */}
+      <div className="flex-1">
+        {/* Header */}
+        <header className="border-b border-[#F4EFE6] px-10 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <h2 className="text-lg font-bold text-[#1C160C]">Admin Dashboard</h2>
+          </div>
+
+          <div className="flex items-center gap-8">
+            <div className="relative w-64">
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-full bg-[#F4EFE6] rounded-xl pl-10 pr-4 py-2 text-[#1C160C]"
+              />
+              <Search className="absolute left-3 top-2.5 text-[#A18249]" size={20} />
+            </div>
+          </div>
+        </header>
+
+        {/* Dashboard Content */}
+        <div className="p-4 max-w-[960px] mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-4xl font-black text-[#1C160C] tracking-tight">Organizations</h1>
+              <p className="text-[#A18249]">Manage your organizations and projects.</p>
+            </div>
+            <button
+              onClick={() => setShowNewOrgModal(true)}
+              className="bg-[#F4EFE6] text-[#1C160C] px-4 py-2 rounded-full text-sm font-bold"
+            >
+              New Organization
+            </button>
+          </div>
+
+          {/* Get Started Card */}
+          <div className="bg-white border border-[#E9DFCE] rounded-xl p-6 mb-4">
+            <h3 className="text-lg font-bold text-[#1C160C] mb-2">Get Started</h3>
+            <div className="flex justify-between items-center">
+              <p className="text-[#A18249]">
+                Create an organization to get started. Alternatively, ask your organization admin to invite you.
+              </p>
+              <button
+                onClick={() => setShowNewOrgModal(true)}
+                className="flex items-center gap-2 bg-[#F4EFE6] text-[#1C160C] px-4 py-2 rounded-full text-sm font-medium"
+              >
+                <Plus size={18} />
+                <span>New Organization</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Demo Card */}
+          <div className="bg-white border border-[#E9DFCE] rounded-xl p-6">
+            <h3 className="text-lg font-bold text-[#1C160C] mb-2">Try Demo</h3>
+            <div className="flex justify-between items-center">
+              <p className="text-[#A18249]">
+                We have built a Q&A chatbot that answers questions based on the documentation. Interact with it to see traces.
+              </p>
+              <button className="flex items-center gap-2 bg-[#F4EFE6] text-[#1C160C] px-4 py-2 rounded-full text-sm font-medium">
+                <Play size={18} />
+                <span>View Demo Project</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* New Organization Modal */}
+      {showNewOrgModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-96">
+            <h3 className="text-xl font-bold mb-4">Create New Organization</h3>
+            <input
+              type="text"
+              placeholder="Organization Name"
+              value={newOrgName}
+              onChange={(e) => setNewOrgName(e.target.value)}
+              className="w-full border border-[#F4EFE6] rounded-lg px-4 py-2 mb-4"
+            />
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={() => setShowNewOrgModal(false)}
+                className="px-4 py-2 text-[#1C160C]"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateOrg}
+                className="bg-[#019863] text-white px-4 py-2 rounded-full"
+              >
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
