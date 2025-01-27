@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <span className="text-[#1C160C]">▼</span>
           <Link to="/" className="text-lg font-bold tracking-[-0.015em] text-[#1C160C]">
-            TechTonic SaaS
+            Tech
           </Link>
         </div>
 
