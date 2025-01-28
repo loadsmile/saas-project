@@ -4,7 +4,7 @@ A modern SaaS (Software as a Service) platform built with React, Firebase, and T
 
 ## 🚀 Live Demo
 
-[View Live Demo] : https://saas-project-one-green.vercel.app/pricing
+[View Live Demo] : https://saas-project-one-green.vercel.app/
 
 ## ✨ Features
 
